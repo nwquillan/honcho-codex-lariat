@@ -1,0 +1,27 @@
+name: Bug report
+description: Report a reproducible Lariat defect without private data
+title: "[bug] "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: Remove OAuth tokens, bearer keys, prompts, responses, peer names, and account identifiers.
+  - type: input
+    id: version
+    attributes:
+      label: Lariat version
+    validations:
+      required: true
+  - type: input
+    id: honcho
+    attributes:
+      label: Honcho version
+      placeholder: 3.0.12
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Sanitized reproduction and observed behavior
+    validations:
+      required: true

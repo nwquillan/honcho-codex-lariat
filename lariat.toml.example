@@ -1,0 +1,25 @@
+[server]
+host = "127.0.0.1"
+port = 5055
+# Prefer LARIAT_API_KEY instead of storing a secret in this file.
+
+[codex]
+# Omit model to let the authenticated Codex account select its default.
+reasoning_effort = "medium"
+runner = "app-server"
+workdir = "/tmp/lariat-workdir"
+
+[runtime]
+timeout_seconds = 180
+max_queue = 32
+max_prompt_chars = 250000
+recycle_requests = 50
+recycle_seconds = 21600
+telemetry_cache_seconds = 60
+overload_retry_min_seconds = 2
+overload_retry_max_seconds = 10
+
+# Optional per-workload overrides:
+#[profiles.codex-dream-deduction]
+#model = "your-codex-model"
+#reasoning_effort = "high"

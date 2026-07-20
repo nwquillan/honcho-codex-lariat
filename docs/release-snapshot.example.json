@@ -1,0 +1,19 @@
+{
+  "active_kill_drill": false,
+  "alias_counts": {
+    "codex-deriver": 0,
+    "codex-dialectic": 0,
+    "codex-dream-deduction": 0,
+    "codex-dream-induction": 0,
+    "codex-summary": 0
+  },
+  "dream_cycles": 0,
+  "honcho_failed_jobs": 0,
+  "honcho_stranded_jobs": 0,
+  "idle_kill_drill": false,
+  "lariat_unhandled_5xx": 0,
+  "max_queue_age_seconds": 0,
+  "oom_kills": 0,
+  "stable_memory": false,
+  "successful_completions": 0
+}

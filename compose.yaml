@@ -1,0 +1,26 @@
+name: lariat
+
+services:
+  lariat:
+    image: ghcr.io/nwquillan/honcho-codex-lariat:0.5.0-rc.1
+    build:
+      context: .
+    platform: linux/amd64
+    restart: unless-stopped
+    init: true
+    mem_limit: 768m
+    memswap_limit: 1g
+    cpus: 0.75
+    pids_limit: 128
+    environment:
+      LARIAT_API_KEY: ${LARIAT_API_KEY:?set LARIAT_API_KEY in .env}
+      LARIAT_REASONING_EFFORT: ${LARIAT_REASONING_EFFORT:-medium}
+      LARIAT_MAX_QUEUE: ${LARIAT_MAX_QUEUE:-8}
+      LARIAT_TIMEOUT_SECONDS: ${LARIAT_TIMEOUT_SECONDS:-240}
+    volumes:
+      - lariat-codex-auth:/var/lib/lariat/codex
+    ports:
+      - "127.0.0.1:5055:5055"
+
+volumes:
+  lariat-codex-auth:

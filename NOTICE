@@ -1,0 +1,8 @@
+Lariat
+Copyright 2026 Lariat contributors
+
+Lariat interoperates with Honcho, an independent AGPL-3.0 project by Plastic
+Labs. No Honcho source code is included in Lariat.
+
+Lariat uses OpenAI's Apache-2.0-licensed openai-codex Python SDK and its bundled
+Codex CLI runtime as declared in pyproject.toml.
