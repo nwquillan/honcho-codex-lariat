@@ -1,11 +1,11 @@
 [project]
 name = "honcho-codex-lariat"
 version = "0.5.0rc1"
-description = "ChatGPT OAuth bridge from self-hosted Honcho to Codex"
+description = "Experimental self-hosted Honcho-to-Codex bridge with an OpenAI-compatible Chat Completions surface"
 readme = "README.md"
 license = "Apache-2.0"
 authors = [{name = "Lariat contributors"}]
-keywords = ["honcho", "codex", "chatgpt", "memory", "proxy"]
+keywords = ["honcho", "codex", "chatgpt", "oauth", "self-hosted", "memory", "openai-compatible"]
 classifiers = [
   "Development Status :: 4 - Beta",
   "License :: OSI Approved :: Apache Software License",

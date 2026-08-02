@@ -4,6 +4,13 @@ All notable changes follow Keep a Changelog. Versions use Semantic Versioning.
 
 ## [Unreleased]
 
+### Documentation
+
+- Added a public-release overview for self-hosted Honcho + Codex/ChatGPT
+  discovery, including experimental-use, security, and support boundaries.
+- Documented dedicated OAuth reauthentication and the 1 GiB / 1.5 GiB
+  reference memory setting.
+
 ## [0.5.0-rc.1] - 2026-07-20
 
 ### Added

@@ -1,15 +1,40 @@
-# Lariat
+# Lariat — a self-hosted Honcho + Codex bridge
 
-Lariat connects self-hosted Honcho 3.0.12 to an authenticated Codex app-server.
-It exposes the small OpenAI Chat Completions surface Honcho needs while using
-official ChatGPT device-code OAuth instead of an OpenAI Platform API key.
+Lariat is an experimental, self-hosted bridge for people running
+[Honcho](https://honcho.dev) who want to evaluate its memory, summary,
+dialectic, and dream workloads with a local Codex app-server. It exposes the
+small OpenAI-compatible Chat Completions surface Honcho needs and delegates
+each request to Codex through a browser/device ChatGPT sign-in.
 
-> **Release status:** `0.5.0-rc.1`. Honcho 3.0.12 is the tested target. Other
-> Honcho 3.0.x releases are best-effort until their compatibility tests pass.
+**Looking for “Honcho Codex,” “Honcho ChatGPT,” or a self-hosted Honcho OAuth
+bridge?** Lariat is built for that narrow use case: a private Honcho deployment
+that needs an OpenAI-shaped endpoint for Codex-backed memory processing.
 
-Lariat does not scrape cookies, automate a browser, or call private ChatGPT web
-endpoints. It uses the official `openai-codex` Python SDK and its bundled,
-version-matched Codex runtime.
+> **Release status:** `0.5.0-rc.1` experimental. This is a public source
+> release candidate, not a production-stability claim. Honcho 3.0.12 is the
+> tested target; other Honcho 3.0.x releases are best-effort until their
+> compatibility tests pass.
+
+## Important support and security boundaries
+
+Lariat is an independent community project. It is **not** an OpenAI product,
+an official Honcho integration, or a general OpenAI API proxy. It uses the
+Codex SDK's normal browser/device sign-in flow; it does not scrape cookies,
+automate a browser, or call private ChatGPT web endpoints.
+
+OpenAI documents ChatGPT sign-in for local Codex workflows and API-key
+authentication for programmatic workflows. Treat Lariat as a private,
+experimental self-hosting adapter: plan access, rate limits, model access, and
+policy eligibility remain controlled by OpenAI and can change. For unattended
+production automation, prefer an OpenAI Platform API key and a supported API
+integration. See OpenAI's [Codex authentication guidance](https://learn.chatgpt.com/docs/auth).
+
+Never expose Lariat, its device-login session, its bearer key, or the Codex
+runtime to the public internet. Run it only on a trusted host and private
+network.
+
+Lariat uses the `openai-codex` Python SDK and its bundled, version-matched
+Codex runtime.
 
 ```mermaid
 flowchart LR
@@ -20,7 +45,7 @@ flowchart LR
     L --> P[Prometheus metrics]
 ```
 
-## What works
+## What Lariat does
 
 - representation derivation;
 - short and long summaries;
@@ -33,6 +58,18 @@ flowchart LR
 Requests are serialized to respect interactive Codex concurrency limits. The
 persistent child is restarted after a transport failure and recycled safely
 between requests after 50 completions or six hours by default.
+
+## Is Lariat right for you?
+
+Use Lariat if you are technically comfortable self-hosting Honcho, can keep a
+Codex-authenticated runtime on a private machine, and want to experiment with
+Honcho's memory pipeline through a Codex-compatible Chat Completions adapter.
+
+Do not use Lariat as a way to expose Codex to other people, as a multi-tenant
+service, or as a replacement for a supported API integration in unattended
+production. It deliberately serializes requests, has interactive-account rate
+limits, and may require you to sign in again when a refresh credential is
+revoked.
 
 ## Quick start with Docker Compose
 
@@ -66,6 +103,11 @@ export LARIAT_API_KEY="$(openssl rand -hex 32)"
 .venv/bin/lariat auth status
 .venv/bin/lariat serve
 ```
+
+For a remote or headless host, open the device-login URL printed by `lariat
+auth login` on a browser where you can complete the ChatGPT sign-in. Keep the
+OAuth volume private and persistent so the running service can reuse its own
+credential state.
 
 ## Honcho configuration
 
