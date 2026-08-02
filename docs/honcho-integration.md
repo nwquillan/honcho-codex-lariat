@@ -11,8 +11,8 @@ services:
     platform: linux/amd64
     restart: unless-stopped
     init: true
-    mem_limit: 768m
-    memswap_limit: 1g
+    mem_limit: 1g
+    memswap_limit: 1536m
     environment:
       LARIAT_API_KEY: ${LARIAT_API_KEY}
       LARIAT_REASONING_EFFORT: medium
@@ -26,7 +26,9 @@ volumes:
   lariat-codex-auth:
 ```
 
-Authenticate that dedicated volume before starting Honcho:
+Authenticate that dedicated volume before starting Honcho. Run this only on a
+trusted, private host: Lariat is an experimental Codex adapter, not a public
+service or a supported replacement for API-key-based automation.
 
 ```bash
 docker compose run --rm lariat auth login
