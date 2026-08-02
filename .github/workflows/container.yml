@@ -27,7 +27,7 @@ jobs:
         run: |
           test "$(docker run --rm --entrypoint id lariat:ci -u)" != "0"
           docker run --rm --entrypoint python lariat:ci -c "from openai_codex import CodexConfig; assert CodexConfig().codex_bin is None"
-      - uses: aquasecurity/trivy-action@0.30.0
+      - uses: aquasecurity/trivy-action@v0.36.0
         with:
           image-ref: lariat:ci
           format: sarif
