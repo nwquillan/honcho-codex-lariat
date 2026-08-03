@@ -48,7 +48,7 @@ jobs:
         with:
           name: lariat-sbom
           path: lariat.spdx.json
-      - uses: docker/login-action@v3
+      - uses: docker/login-action@v4
         if: github.event_name == 'workflow_dispatch'
         with:
           registry: ghcr.io
