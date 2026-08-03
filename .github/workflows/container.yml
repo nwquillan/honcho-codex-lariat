@@ -44,7 +44,7 @@ jobs:
           image: lariat:ci
           format: spdx-json
           output-file: lariat.spdx.json
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: lariat-sbom
           path: lariat.spdx.json
